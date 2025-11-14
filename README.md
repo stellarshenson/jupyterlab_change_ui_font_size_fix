@@ -5,6 +5,7 @@
 [![PyPI version](https://img.shields.io/pypi/v/jupyterlab_change_ui_font_size_fix.svg)](https://pypi.org/project/jupyterlab_change_ui_font_size_fix/)
 [![Total PyPI downloads](https://static.pepy.tech/badge/jupyterlab_change_ui_font_size_fix)](https://pepy.tech/project/jupyterlab_change_ui_font_size_fix)
 [![JupyterLab 4](https://img.shields.io/badge/JupyterLab-4-orange.svg)](https://jupyterlab.readthedocs.io/en/stable/)
+[![Brought To You By KOLOMOLO](https://img.shields.io/badge/Brought%20To%20You%20By-KOLOMOLO-00ffff?style=flat)](https://kolomolo.com)
 
 A JupyterLab extension that fixes file browser alignment when changing UI font size. Icons and text stay properly aligned across all font sizes.
 
