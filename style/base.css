@@ -12,30 +12,40 @@
      ======================================== */
 
   /* Mode selection: 'proportional' or 'fixed' */
+
   /* proportional: icons scale with font size changes */
+
   /* fixed: icons stay at specified pixel size regardless of font size */
   --jp-custom-icon-mode: proportional;
 
   /* Proportional mode settings */
+
   /* Icon scaling multiplier relative to font size (default: 1.5) */
+
   /* Examples: 1.0 = same as font, 1.5 = 1.5x font, 2.0 = 2x font */
   --jp-custom-icon-scale: 1.5;
 
   /* Fixed mode settings */
+
   /* Fixed icon size in pixels (default: 20px - JupyterLab default) */
+
   /* Examples: 16px, 18px, 20px, 24px, 32px */
   --jp-custom-icon-fixed-size: 20px;
 }
 
 /* Proportional icon scaling (scales with font size) */
-:root[style*="--jp-custom-icon-mode: proportional"] .jp-DirListing-itemIcon svg,
-:root:not([style*="--jp-custom-icon-mode"]) .jp-DirListing-itemIcon svg {
-  width: calc(var(--jp-ui-font-size1) * var(--jp-custom-icon-scale)) !important;
-  height: calc(var(--jp-ui-font-size1) * var(--jp-custom-icon-scale)) !important;
+:root[style*='--jp-custom-icon-mode: proportional'] .jp-DirListing-itemIcon svg,
+:root:not([style*='--jp-custom-icon-mode']) .jp-DirListing-itemIcon svg {
+  width: calc(
+    var(--jp-ui-font-size1) * var(--jp-custom-icon-scale)
+  ) !important;
+  height: calc(
+    var(--jp-ui-font-size1) * var(--jp-custom-icon-scale)
+  ) !important;
 }
 
 /* Fixed icon sizing (stays constant regardless of font size) */
-:root[style*="--jp-custom-icon-mode: fixed"] .jp-DirListing-itemIcon svg {
+:root[style*='--jp-custom-icon-mode: fixed'] .jp-DirListing-itemIcon svg {
   width: var(--jp-custom-icon-fixed-size) !important;
   height: var(--jp-custom-icon-fixed-size) !important;
 }

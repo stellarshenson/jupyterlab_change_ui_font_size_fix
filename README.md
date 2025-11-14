@@ -1,60 +1,57 @@
 # jupyterlab_change_ui_font_size_fix
 
-[![Github Actions Status](/workflows/Build/badge.svg)](/actions/workflows/build.yml)
+[![Github Actions Status](https://github.com/stellarshenson/jupyterlab_change_ui_font_size_fix/actions/workflows/build.yml/badge.svg)](https://github.com/stellarshenson/jupyterlab_change_ui_font_size_fix/actions/workflows/build.yml)
+[![npm version](https://img.shields.io/npm/v/jupyterlab_change_ui_font_size_fix.svg)](https://www.npmjs.com/package/jupyterlab_change_ui_font_size_fix)
+[![PyPI version](https://img.shields.io/pypi/v/jupyterlab_change_ui_font_size_fix.svg)](https://pypi.org/project/jupyterlab_change_ui_font_size_fix/)
+[![Total PyPI downloads](https://static.pepy.tech/badge/jupyterlab_change_ui_font_size_fix)](https://pepy.tech/project/jupyterlab_change_ui_font_size_fix)
+[![JupyterLab 4](https://img.shields.io/badge/JupyterLab-4-orange.svg)](https://jupyterlab.readthedocs.io/en/stable/)
 
-Jupyterlab fix disguised as extension, to fix issue with changes to the UI font size, where file navigator item names get misaligned with icons
+A JupyterLab extension that fixes file browser alignment when changing UI font size. Icons and text stay properly aligned across all font sizes.
+
+## The Problem We're Solving
+
+When you change JupyterLab's UI font size, the file browser can show alignment issues. Icons floating in space, text misaligned, the interface looking somewhat off. This extension fixes that alignment problem.
+
+When text scales but icons stay at fixed 20px dimensions, vertical alignment breaks down.
 
 ## Features
 
-This extension provides two icon sizing modes for the file browser:
+This extension provides two icon sizing modes for maximum flexibility:
 
-**Proportional Mode** (default) - Icons scale automatically with UI font size changes
+**Proportional Mode** (default) - Icons scale with your font size automatically
 - Icons maintain consistent proportion to text at any font size
 - Configurable scaling multiplier via `--jp-custom-icon-scale` (default: 1.5)
-- Examples: 1.0 = same as font size, 2.0 = 2x font size
+- At 13px font: icons are ~19.5px, at 9px font: icons are 13.5px
+- Leverages SVG scalability for crisp rendering at any size
 
-**Fixed Mode** - Icons stay at a constant pixel size regardless of font size
-- Useful for maintaining familiar icon sizes while adjusting text
+**Fixed Mode** - Keep icons at constant size while text scales independently
+- Useful when you want smaller text but familiar icon dimensions
 - Configurable via `--jp-custom-icon-fixed-size` (default: 20px)
-- Examples: 16px, 20px, 24px, 32px
+- Standard sizes: 16px, 18px, 20px, 24px, 32px
+
+Both modes include flexbox-based vertical alignment to ensure icons and text stay properly centered regardless of sizing choices.
+
+This extension works well with custom icon extensions like [jupyterlab_vscode_icons_extension](https://github.com/stellarshenson/jupyterlab_vscode_icons_extension), maintaining proper alignment with VSCode-style icons across all font sizes.
+
+## Problem Statement and Solution
+
+**Problem**: JupyterLab's file browser uses fixed 20px icon dimensions while text size scales via the `--jp-ui-font-size1` CSS variable (default 13px). When users adjust UI font size, icons remain static while text shrinks or grows, breaking vertical alignment. At 9px font size, the misalignment becomes severe with icons appearing significantly larger than text and floating off-center.
+
+**Solution**: This extension implements dynamic icon sizing using `calc(var(--jp-ui-font-size1) * var(--jp-custom-icon-scale))` for proportional mode or fixed pixel values via `--jp-custom-icon-fixed-size` for fixed mode. Combined with flexbox alignment (display: flex, align-items: center) applied to `.jp-DirListing-item`, `.jp-DirListing-itemIcon`, and `.jp-DirListing-itemText` selectors, icons and text maintain proper vertical centering across all font sizes. SVG icons scale cleanly at any dimension without quality loss.
 
 ## Configuration
 
-You can customize icon sizing by adding CSS overrides to your JupyterLab settings. Go to Settings > Advanced Settings Editor > Custom CSS and add:
+Customize icon sizing through JupyterLab's Custom CSS settings (Settings > Advanced Settings Editor > Custom CSS):
 
-### Proportional Mode (default)
+**Proportional mode with custom scaling:**
 ```css
 :root {
   --jp-custom-icon-mode: proportional;
-  --jp-custom-icon-scale: 1.5;  /* Adjust multiplier as needed */
+  --jp-custom-icon-scale: 1.2;  /* Smaller icons (1.2x font size) */
 }
 ```
 
-### Fixed Mode
-```css
-:root {
-  --jp-custom-icon-mode: fixed;
-  --jp-custom-icon-fixed-size: 20px;  /* Adjust pixel size as needed */
-}
-```
-
-### Example Configurations
-
-**Smaller proportional icons** (icon = 1.2x font size):
-```css
-:root {
-  --jp-custom-icon-scale: 1.2;
-}
-```
-
-**Larger proportional icons** (icon = 2x font size):
-```css
-:root {
-  --jp-custom-icon-scale: 2.0;
-}
-```
-
-**Fixed 16px icons**:
+**Fixed mode at 16px:**
 ```css
 :root {
   --jp-custom-icon-mode: fixed;
@@ -62,21 +59,20 @@ You can customize icon sizing by adding CSS overrides to your JupyterLab setting
 }
 ```
 
-**Fixed 24px icons**:
+**Proportional mode with larger icons:**
 ```css
 :root {
-  --jp-custom-icon-mode: fixed;
-  --jp-custom-icon-fixed-size: 24px;
+  --jp-custom-icon-scale: 2.0;  /* Icons 2x the font size */
 }
 ```
+
+The extension uses CSS variables for configuration, making adjustments straightforward without rebuilding or restarting JupyterLab.
 
 ## Requirements
 
 - JupyterLab >= 4.0.0
 
-## Install
-
-To install the extension, execute:
+## Installation
 
 ```bash
 pip install jupyterlab_change_ui_font_size_fix
@@ -84,87 +80,6 @@ pip install jupyterlab_change_ui_font_size_fix
 
 ## Uninstall
 
-To remove the extension, execute:
-
 ```bash
 pip uninstall jupyterlab_change_ui_font_size_fix
 ```
-
-## Contributing
-
-### Development install
-
-Note: You will need NodeJS to build the extension package.
-
-The `jlpm` command is JupyterLab's pinned version of
-[yarn](https://yarnpkg.com/) that is installed with JupyterLab. You may use
-`yarn` or `npm` in lieu of `jlpm` below.
-
-```bash
-# Clone the repo to your local environment
-# Change directory to the jupyterlab_change_ui_font_size_fix directory
-
-# Set up a virtual environment and install package in development mode
-python -m venv .venv
-source .venv/bin/activate
-pip install --editable "."
-
-# Link your development version of the extension with JupyterLab
-jupyter labextension develop . --overwrite
-
-# Rebuild extension Typescript source after making changes
-# IMPORTANT: Unlike the steps above which are performed only once, do this step
-# every time you make a change.
-jlpm build
-```
-
-You can watch the source directory and run JupyterLab at the same time in different terminals to watch for changes in the extension's source and automatically rebuild the extension.
-
-```bash
-# Watch the source directory in one terminal, automatically rebuilding when needed
-jlpm watch
-# Run JupyterLab in another terminal
-jupyter lab
-```
-
-With the watch command running, every saved change will immediately be built locally and available in your running JupyterLab. Refresh JupyterLab to load the change in your browser (you may need to wait several seconds for the extension to be rebuilt).
-
-By default, the `jlpm build` command generates the source maps for this extension to make it easier to debug using the browser dev tools. To also generate source maps for the JupyterLab core extensions, you can run the following command:
-
-```bash
-jupyter lab build --minimize=False
-```
-
-### Development uninstall
-
-```bash
-pip uninstall jupyterlab_change_ui_font_size_fix
-```
-
-In development mode, you will also need to remove the symlink created by `jupyter labextension develop`
-command. To find its location, you can run `jupyter labextension list` to figure out where the `labextensions`
-folder is located. Then you can remove the symlink named `jupyterlab_change_ui_font_size_fix` within that folder.
-
-### Testing the extension
-
-#### Frontend tests
-
-This extension is using [Jest](https://jestjs.io/) for JavaScript code testing.
-
-To execute them, execute:
-
-```sh
-jlpm
-jlpm test
-```
-
-#### Integration tests
-
-This extension uses [Playwright](https://playwright.dev/docs/intro) for the integration tests (aka user level tests).
-More precisely, the JupyterLab helper [Galata](https://github.com/jupyterlab/jupyterlab/tree/master/galata) is used to handle testing the extension in JupyterLab.
-
-More information are provided within the [ui-tests](./ui-tests/README.md) README.
-
-### Packaging the extension
-
-See [RELEASE](RELEASE.md)
