@@ -1,0 +1,17 @@
+# Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
+_commit: v4.5.0
+_src_path: https://github.com/jupyterlab/extension-template
+author_email: konrad.jelen@gmail.com
+author_name: Stellars Henson
+has_ai_rules: false
+has_binder: false
+has_settings: false
+kind: frontend
+labextension_name: jupyterlab_change_ui_font_size_fix
+project_short_description: Jupyterlab fix disguised as extension, to fix issue with
+    changes to the UI font size, where file navigator item names get misaligned with
+    icons
+python_name: jupyterlab_change_ui_font_size_fix
+repository: ''
+test: true
+
