@@ -1,6 +1,6 @@
 {
     "name": "jupyterlab_change_ui_font_size_fix",
-    "version": "1.0.4",
+    "version": "1.0.8",
     "description": "Jupyterlab fix disguised as extension, to fix issue with changes to the UI font size, where file navigator item names get misaligned with icons",
     "keywords": [
         "jupyter",
@@ -26,7 +26,7 @@
     "style": "style/index.css",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/stellarshenson/jupyterlab_change_ui_font_size_fix.git"
+        "url": "https://github.com/stellarshenson/jupyterlab_change_ui_font_size_fix.git"
     },
     "scripts": {
         "build": "jlpm build:lib && jlpm build:labextension:dev",

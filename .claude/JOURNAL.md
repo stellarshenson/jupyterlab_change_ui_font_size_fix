@@ -15,3 +15,6 @@ This journal tracks substantive work on documents, diagrams, and documentation c
 
 4. **Task - Add deprecation notice**: Added GitHub-style WARNING alert to README<br>
     **Result**: Added deprecation notice in README.md using GitHub alert syntax. Warning clearly states extension is temporary fix, will be deprecated when JupyterLab core implements proper icon scaling, plans to submit PR to main JupyterLab repository, and extension will become unnecessary once fix is merged into core. Positioned warning immediately after main description for high visibility.
+
+5. **Task - Publication and URL format fixes**: Published extension to npm and resolved PyPI URL format issue<br>
+    **Result**: Executed make publish which auto-incremented version from 1.0.4 to 1.0.8. Successfully published version 1.0.6 to npm registry. Initial PyPI upload failed due to git+ prefix in repository URL which PyPI validation rejected. Removed git+ prefix from package.json repository URL to use standard https:// format for PyPI compatibility while maintaining npm functionality. Version 1.0.8 ready for republishing to both registries with corrected URL format.
