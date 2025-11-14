@@ -8,6 +8,9 @@
 
 A JupyterLab extension that fixes file browser alignment when changing UI font size. Icons and text stay properly aligned across all font sizes.
 
+> [!WARNING]
+> This extension is a temporary fix and will be deprecated once JupyterLab core implements proper icon scaling. We plan to submit a PR to the main JupyterLab repository to address this issue natively. Once accepted and released, this extension will no longer be necessary.
+
 ## The Problem We're Solving
 
 When you change JupyterLab's UI font size, the file browser can show alignment issues. Icons floating in space, text misaligned, the interface looking somewhat off. This extension fixes that alignment problem.
