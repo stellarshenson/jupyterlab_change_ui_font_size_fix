@@ -7,6 +7,9 @@
 [![JupyterLab 4](https://img.shields.io/badge/JupyterLab-4-orange.svg)](https://jupyterlab.readthedocs.io/en/stable/)
 [![Brought To You By KOLOMOLO](https://img.shields.io/badge/Brought%20To%20You%20By-KOLOMOLO-00ffff?style=flat)](https://kolomolo.com)
 
+> [!TIP]
+> This fix is part of the [stellars_jupyterlab_fixes](https://github.com/stellarshenson/stellars_jupyterlab_fixes) metapackage. Install all Stellars fixes at once: `pip install stellars_jupyterlab_fixes`
+
 A JupyterLab extension that fixes file browser alignment when changing UI font size. Icons and text stay properly aligned across all font sizes.
 
 > [!WARNING]
