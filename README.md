@@ -1,5 +1,8 @@
 # jupyterlab_change_ui_font_size_fix
 
+> [!IMPORTANT]
+> This package is DEPRECATED. [jupyterlab_core_patches_extension](https://github.com/stellarshenson/jupyterlab_core_patches_extension) carries this fix with the other nine in one extension, with one switch per fix. Uninstall this package and the `stellars_jupyterlab_fixes` bundle before installing the replacement. This repository stays published and frozen.
+
 [![Github Actions Status](https://github.com/stellarshenson/jupyterlab_change_ui_font_size_fix/actions/workflows/build.yml/badge.svg)](https://github.com/stellarshenson/jupyterlab_change_ui_font_size_fix/actions/workflows/build.yml)
 [![npm version](https://img.shields.io/npm/v/jupyterlab_change_ui_font_size_fix.svg)](https://www.npmjs.com/package/jupyterlab_change_ui_font_size_fix)
 [![PyPI version](https://img.shields.io/pypi/v/jupyterlab_change_ui_font_size_fix.svg)](https://pypi.org/project/jupyterlab_change_ui_font_size_fix/)
